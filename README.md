@@ -11,7 +11,7 @@ This is a simple JSON editor based on Avalonia UI with minimal features:
 
 ## Reference
 
---
+---
 
 1. Avalonia UI - https://docs.avaloniaui.net/
 2. Avalonia.Edit - https://github.com/AvaloniaUI/AvaloniaEdit
