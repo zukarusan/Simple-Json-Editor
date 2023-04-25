@@ -1,0 +1,74 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ZookJson.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:views="clr-namespace:ZookJson.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ZookJson.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ZookJson"
+		Background="#1E1E1E">
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Grid>
+		
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+		<Menu Grid.Row="0">
+			<MenuItem Header="_File">
+				<MenuItem Header="_Open..." Command="{Binding $parent[Window].DataContext.OpenCommand}"/>
+				<Separator/>
+				<MenuItem Header="_Exit"/>
+			</MenuItem>
+		</Menu>
+		<Grid Grid.Row="1">
+			<Panel VerticalAlignment="Stretch">
+				<views:EditorControl Name="Editor"
+									 HorizontalAlignment="Stretch"
+									 VerticalAlignment="Stretch">
+				</views:EditorControl>
+			</Panel>
+		</Grid>
+		
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <Button HorizontalAlignment="Center" Margin="5"
+						Command="{Binding $parent[Window].DataContext.PrettifyCommand}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/Assets/bracket.png" Width="16" Height="16" />
+                        <TextBlock Text="Prettify" Margin="5,0,0,0" />
+                    </StackPanel>
+                </Button>
+                <Button HorizontalAlignment="Center" Margin="5"
+						Command="{Binding $parent[Window].DataContext.CompactCommand}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/Assets/minify.png" Width="16" Height="16" />
+                        <TextBlock Text="Compact" Margin="5,0,0,0" />
+                    </StackPanel>
+                </Button>
+                <Button HorizontalAlignment="Center" Margin="5">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/Assets/copy.png" Width="16" Height="16" />
+                        <TextBlock Text="Copy" Margin="5,0,0,0" />
+                    </StackPanel>
+                </Button>
+                <Button HorizontalAlignment="Center" Margin="5">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/Assets/csv_ico.png" Width="16" Height="16" />
+                        <TextBlock Text="CSV" Margin="5,0,0,0" />
+                    </StackPanel>
+                </Button>
+            </ItemsControl>
+        </StackPanel>
+	</Grid>
+</Window>
