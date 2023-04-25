@@ -6,7 +6,7 @@
 		xmlns:views="clr-namespace:ZookJson.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ZookJson.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/app-logo.ico"
         Title="ZookJson"
 		Background="#1E1E1E">
     <Design.DataContext>
@@ -22,8 +22,12 @@
 		<Menu Grid.Row="0">
 			<MenuItem Header="_File">
 				<MenuItem Header="_Open..." Command="{Binding $parent[Window].DataContext.OpenCommand}"/>
+				<MenuItem Header="_Save" Command="{Binding $parent[Window].DataContext.SaveCommand}"/>
+				<MenuItem Header="_Save As..." Command="{Binding $parent[Window].DataContext.SaveAsCommand}"/>
 				<Separator/>
-				<MenuItem Header="_Exit"/>
+				<MenuItem Header="_Direct Convert to CSV..." Command="{Binding $parent[Window].DataContext.DirectCsvCommand}"/>
+				<Separator/>
+				<MenuItem Header="_Exit" Command="{Binding $parent[Window].DataContext.ExitCommand}"/>
 			</MenuItem>
 		</Menu>
 		<Grid Grid.Row="1">
@@ -56,13 +60,15 @@
                         <TextBlock Text="Compact" Margin="5,0,0,0" />
                     </StackPanel>
                 </Button>
-                <Button HorizontalAlignment="Center" Margin="5">
+                <Button HorizontalAlignment="Center" Margin="5"
+						Command="{Binding $parent[Window].DataContext.CopyCommand}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Image Source="/Assets/copy.png" Width="16" Height="16" />
                         <TextBlock Text="Copy" Margin="5,0,0,0" />
                     </StackPanel>
                 </Button>
-                <Button HorizontalAlignment="Center" Margin="5">
+                <Button HorizontalAlignment="Center" Margin="5"
+						Command="{Binding $parent[Window].DataContext.CsvCommand}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Image Source="/Assets/csv_ico.png" Width="16" Height="16" />
                         <TextBlock Text="CSV" Margin="5,0,0,0" />
