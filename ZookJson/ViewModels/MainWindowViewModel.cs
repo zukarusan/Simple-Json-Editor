@@ -12,6 +12,7 @@ using MessageBox.Avalonia;
 using System;
 using Avalonia.Platform;
 using Avalonia.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace ZookJson.ViewModels
 {
@@ -175,16 +176,17 @@ namespace ZookJson.ViewModels
         }
         private async Task ConvertToCSV(string path)
         {
-            await Task.Run(()=> Util.JsonToCSV(((MainWindow)_view).Editor.Editor.Document.Text, path,
+            string jsonContent = ((MainWindow)_view).Editor.Editor.Document.Text;
+            await Task.Run(()=> Util.JsonToCSV(jsonContent, path,
             () => {
-                CsvProgress.Active = false;
+                Dispatcher.UIThread.InvokeAsync(() => CsvProgress.Active = false, DispatcherPriority.DataBind);
             }));
         }
         private async Task ConvertToCSV(string jsonPath, string csvPath)
         {
             await Task.Run(()=>Util.FileJsonToCSV(jsonPath, csvPath,
             () => {
-                CsvProgress.Active = false;
+                Dispatcher.UIThread.InvokeAsync(() => CsvProgress.Active = false, DispatcherPriority.DataBind);
                 string argument = $@"/select, ""{csvPath}""";
 
                 System.Diagnostics.Process.Start("explorer.exe", argument);

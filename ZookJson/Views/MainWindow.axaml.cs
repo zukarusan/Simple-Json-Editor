@@ -28,15 +28,6 @@ namespace ZookJson.Views
             _textEditor = this.FindControl<EditorControl>("Editor").Editor;
             _textEditor.Background = Brushes.Transparent;
             _textEditor.ShowLineNumbers = true;
-            _textEditor.ContextMenu = new ContextMenu
-            {
-                Items = new List<MenuItem>
-                {
-                    new MenuItem { Header = "Copy", InputGesture = new KeyGesture(Key.C, KeyModifiers.Control) },
-                    new MenuItem { Header = "Paste", InputGesture = new KeyGesture(Key.V, KeyModifiers.Control) },
-                    new MenuItem { Header = "Cut", InputGesture = new KeyGesture(Key.X, KeyModifiers.Control) }
-                }
-            };
             _textEditor.TextArea.Background = this.Background;
             _textEditor.Options.ShowBoxForControlCharacters = true;
             _textEditor.TextArea.IndentationStrategy = new AvaloniaEdit.Indentation.CSharp.CSharpIndentationStrategy(_textEditor.Options);
